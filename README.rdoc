@@ -1,3 +1,7 @@
 = Brewday
 
 Community app for homebrewers.
+
+Getting started:
+  - script/reset
+  - run code from db/seeds.rb from script/console (rake db:seed isn't working anymore? will resolve soon) 

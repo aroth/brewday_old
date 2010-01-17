@@ -9,13 +9,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100117032912) do
+ActiveRecord::Schema.define(:version => 20100117184719) do
 
   create_table "breweries", :force => true do |t|
     t.integer  "creator_id"
+    t.integer  "brewery_type_id"
     t.string   "name"
     t.text     "about"
-    t.string   "style",      :limit => 15, :default => "homebrew"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "brewery_types", :force => true do |t|
+    t.string   "name",        :limit => 20
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,10 +58,17 @@ ActiveRecord::Schema.define(:version => 20100117032912) do
   add_index "images", ["imageable_type", "imageable_id"], :name => "index_images_on_imageable_type_and_imageable_id"
   add_index "images", ["user_id"], :name => "index_images_on_user_id"
 
+  create_table "membership_types", :force => true do |t|
+    t.string   "name",        :limit => 20
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "memberships", :force => true do |t|
     t.integer "user_id"
     t.integer "brewery_id"
-    t.string  "role",       :limit => 10
+    t.integer "membership_type_id"
   end
 
   create_table "sessions", :force => true do |t|
