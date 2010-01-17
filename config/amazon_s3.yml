@@ -1,0 +1,5 @@
+development:
+  bucket_name: brewday
+  access_key_id: -
+  secret_access_key: -
+  persistent: false

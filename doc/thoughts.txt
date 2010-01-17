@@ -1,0 +1,42 @@
+users
+
+breweries
+---------
+  name
+  about
+  type (commercial, homebrew)
+  
+brewdays
+--------
+  date
+  brewers (users)
+  recipe_id
+  
+
+brewdays_users
+--------------
+  brewday_id
+  user_id
+  user_role (brewer, etc..)
+
+recipes
+-------
+  name
+  style
+  about
+  ...
+
+
+images (polymorphic)
+-----------
+  imageable_type
+  imageable_id
+  
+comments (polymorphic)
+-----------
+  commentable_type
+  commentable_id
+  
+  
+  
+  
