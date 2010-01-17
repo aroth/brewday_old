@@ -9,7 +9,53 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081106072031) do
+ActiveRecord::Schema.define(:version => 20100117032912) do
+
+  create_table "breweries", :force => true do |t|
+    t.integer  "creator_id"
+    t.string   "name"
+    t.text     "about"
+    t.string   "style",      :limit => 15, :default => "homebrew"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "body"
+    t.string   "commentable_type", :limit => 20
+    t.integer  "commentable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "images", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "filename"
+    t.string   "name"
+    t.text     "description"
+    t.string   "content_type"
+    t.integer  "size"
+    t.integer  "width"
+    t.integer  "height"
+    t.integer  "parent_id"
+    t.string   "thumbnail"
+    t.string   "imageable_type", :limit => 15
+    t.integer  "imageable_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["imageable_type", "imageable_id", "user_id"], :name => "index_images_on_imageable_type_and_imageable_id_and_user_id"
+  add_index "images", ["imageable_type", "imageable_id"], :name => "index_images_on_imageable_type_and_imageable_id"
+  add_index "images", ["user_id"], :name => "index_images_on_user_id"
+
+  create_table "memberships", :force => true do |t|
+    t.integer "user_id"
+    t.integer "brewery_id"
+    t.string  "role",       :limit => 10
+  end
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false

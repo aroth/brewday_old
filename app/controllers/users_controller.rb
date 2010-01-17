@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   
   def show
     @user = @current_user
+    @breweries = @user.breweries
   end
 
   def edit

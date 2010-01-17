@@ -1,0 +1,6 @@
+%h1= @brewery.name
+
+%h3 Brewers:
+%ul
+  - @brewery.users.each do |user|
+    %li= link_to( user.login, user_path( user ) )

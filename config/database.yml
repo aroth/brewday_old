@@ -2,7 +2,7 @@ development:
 # Mysql Settings
   adapter: mysql
   encoding: utf8
-  database: brewday_development_x
+  database: brewday_development
   username: root
   password:
   pool: 5

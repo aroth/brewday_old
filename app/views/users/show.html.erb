@@ -34,4 +34,13 @@
 </p>
 
 
+<hr/>
+
+<h1>Breweries</h1>
+<ul>
+<% @breweries.each do |brewery| %>
+  <li><%= link_to brewery.name, brewery_path( brewery ) %></li>
+<% end %>
+</ul>
+
 <%= link_to 'Edit', edit_account_path %>
