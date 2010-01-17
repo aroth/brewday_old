@@ -4,4 +4,11 @@ Community app for homebrewers.
 
 Getting started:
   - script/reset
-  - run code from db/seeds.rb from script/console (rake db:seed isn't working anymore? will resolve soon) 
+  
+  This will run: 
+    rake db:drop
+    rake db:create
+    rake db:seeds
+    
+  The app is a moving target. Rather than adding countless migrations, the existing migrations may change between commits. Running script/reset after pulling the repo and using the test users (see db/seeds.rb) is the safest practice at the moment.
+   
