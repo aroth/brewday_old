@@ -1,6 +1,6 @@
 class Brewery < ActiveRecord::Base
   has_many :memberships
-  has_many :users, :through => :memberships
+  has_many :users, :through => :memberships, :uniq => true
   belongs_to :brewery_type
   
   def brewers
