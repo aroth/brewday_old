@@ -43,4 +43,4 @@
 <% end %>
 </ul>
 
-<%= link_to 'Edit', edit_account_path %>
+<%= link_to 'Edit', edit_account_path if @current_user and @current_user == @user %>

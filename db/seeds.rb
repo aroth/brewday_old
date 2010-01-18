@@ -22,3 +22,7 @@ test_user_2.memberships << Membership.create( :brewery => test_brewery, :members
 test_user_1.save
 test_user_2.save
 
+recipe = Recipe.create( :name => 'Test Recipe #1', :brewery => Brewery.find(1) )
+BrewDay.create( :brewery => test_brewery, :recipe => recipe, :brew_date => Time.now - 5.days )
+
+

@@ -1,0 +1,21 @@
+/* dan -- please make the CSS happy */
+
+h1 {
+  font-size: 200%;
+}
+
+h2 {
+  font-size: 150%;  
+}
+
+h3 {
+  font-size: 130%;
+}
+
+h1, h2, h3 {
+  margin-bottom: 5px;
+}
+
+body {
+  padding: 10px;
+}

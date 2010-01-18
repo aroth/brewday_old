@@ -5,16 +5,20 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title><%= controller.controller_name %>: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+
   <%= javascript_include_tag :defaults %>
+
+	<%= stylesheet_link_tag 'fonts-min' %>
+	<%= stylesheet_link_tag 'reset-min' %>
+
+  <%= stylesheet_link_tag 'app' %>
+	
 </head>
 <body>
 
 
 <h1>Brewday</h1>
 <%= pluralize User.logged_in.count, "user" %> currently logged in<br /> <!-- This based on last_request_at, if they were active < 10 minutes they are logged in -->
-<br />
-<br />
 
 
 <% if !current_user %>
@@ -24,10 +28,11 @@
   <%= link_to "My Account", account_path %> |
   <%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
 <% end %>
+<hr/>
 
 <p style="color: green"><%= flash[:notice] %></p>
 
-<%= yield  %>
+<%= yield %>
 
 </body>
 </html>

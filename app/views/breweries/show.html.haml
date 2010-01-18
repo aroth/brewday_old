@@ -3,4 +3,28 @@
 %h3 Brewers:
 %ul
   - @brewery.users.each do |user|
-    %li= link_to( user.login, user_path( user ) )
+    %li
+      = link_to( user.login, user_path( user ) )
+      __ roles:
+      - if @brewery.admins.include?( user )
+        ADMIN
+      - if @brewery.brewers.include?( user )
+        BREWER
+
+%br
+%br
+
+%h3 Brew Days
+%ul
+  - @brew_days.each do |brew_day|
+    %li
+    = brew_day.brew_date
+    = "(#{ brew_day.recipe.name })"
+    
+%br
+%br
+
+%h3 Recipes
+%ul
+  - @recipes.each do |recipe|
+    %li= recipe.name
