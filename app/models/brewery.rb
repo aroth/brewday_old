@@ -1,9 +1,12 @@
 class Brewery < ActiveRecord::Base
+
   has_many :memberships
   has_many :users, :through => :memberships, :uniq => true
   belongs_to :brewery_type
   has_many :brew_days
   has_many :recipes
+  has_many :beer_styles, :through => :recipes, :uniq => true
+  has_one :timeline
   
   def brewers
     self.memberships.collect { |m| m.user if m.membership_type.name == 'Brewer' }.compact

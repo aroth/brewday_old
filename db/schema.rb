@@ -9,7 +9,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100118165226) do
+ActiveRecord::Schema.define(:version => 20100118182529) do
+
+  create_table "beer_style_categories", :force => true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "beer_styles", :force => true do |t|
+    t.integer  "beer_style_category_id"
+    t.string   "name"
+    t.string   "code"
+    t.text     "description"
+    t.string   "stats_ibus"
+    t.string   "stats_og"
+    t.string   "stats_fg"
+    t.string   "stats_srm"
+    t.string   "stats_abv"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "brew_days", :force => true do |t|
     t.integer  "brewery_id"
@@ -26,6 +47,19 @@ ActiveRecord::Schema.define(:version => 20100118165226) do
     t.text     "about"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "brewership_types", :force => true do |t|
+    t.string   "name",        :limit => 20
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "brewerships", :force => true do |t|
+    t.integer "user_id"
+    t.integer "brew_day_id"
+    t.integer "brewership_type_id"
   end
 
   create_table "brewery_types", :force => true do |t|
@@ -82,6 +116,7 @@ ActiveRecord::Schema.define(:version => 20100118165226) do
   create_table "recipes", :force => true do |t|
     t.integer  "user_id"
     t.integer  "brewery_id"
+    t.integer  "beer_style_id"
     t.string   "name"
     t.text     "description"
     t.datetime "created_at"
@@ -97,6 +132,21 @@ ActiveRecord::Schema.define(:version => 20100118165226) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "timeline_entries", :force => true do |t|
+    t.integer  "timeline_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "entry_timestamp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "timelines", :force => true do |t|
+    t.integer  "brew_day_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.datetime "created_at"

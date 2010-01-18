@@ -3,6 +3,7 @@ class CreateRecipes < ActiveRecord::Migration
     create_table :recipes, :force => true do |t|
       t.integer :user_id
       t.integer :brewery_id
+      t.integer :beer_style_id
       t.string :name
       t.text :description
       t.timestamps

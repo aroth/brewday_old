@@ -17,9 +17,21 @@
 %h3 Brew Days
 %ul
   - @brew_days.each do |brew_day|
-    %li
-    = brew_day.brew_date
-    = "(#{ brew_day.recipe.name })"
+    %li{ :style => 'margin-bottom: 10px' }
+      = brew_day.brew_date
+      = "(#{ brew_day.recipe.name })"
+      %div{ :style => 'margin-left: 30px' }
+        %b Brewers:
+        %ul
+        - brew_day.brewerships.each do |b|
+          %li= "#{ b.user.login } as #{ b.brewership_type.name }"
+
+      - unless brew_day.timeline.nil?
+        %div{ :style => 'margin-left: 30px; margin-top: 10px' }
+          %b Timeline:
+          %ul
+            - brew_day.timeline.timeline_entries.each do |entry|
+              %li= "&nbsp;&nbsp; - #{ entry.name } (#{ entry.entry_timestamp })"
     
 %br
 %br
@@ -27,4 +39,13 @@
 %h3 Recipes
 %ul
   - @recipes.each do |recipe|
-    %li= recipe.name
+    %li= "<b>#{ recipe.name }</b> (#{ recipe.beer_style.name })"
+    
+
+%br
+%br
+
+%h3 Styles Brewed
+%ul
+  - @styles.each do |style|
+    %li= "<b>#{ style.name }</b> (#{ style.code })"
