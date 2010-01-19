@@ -14,25 +14,44 @@
 %br
 %br
 
-%h3 Brew Days
+%h3 Batches
+%hr
 %ul
-  - @brew_days.each do |brew_day|
+  - @batches.each do |batch|
     %li{ :style => 'margin-bottom: 10px' }
-      = brew_day.brew_date
-      = "(#{ brew_day.recipe.name })"
-      %div{ :style => 'margin-left: 30px' }
-        %b Brewers:
-        %ul
-        - brew_day.brewerships.each do |b|
-          %li= "#{ b.user.login } as #{ b.brewership_type.name }"
+      = "Batch ##{ batch.index }"
 
-      - unless brew_day.timeline.nil?
-        %div{ :style => 'margin-left: 30px; margin-top: 10px' }
-          %b Timeline:
-          %ul
-            - brew_day.timeline.timeline_entries.each do |entry|
-              %li= "&nbsp;&nbsp; - #{ entry.name } (#{ entry.entry_timestamp })"
-    
+      %div{ :style => 'margin: 15px' }
+        %b Recipe
+
+        %div{ :style => 'margin: 15px' }
+          = batch.recipe.name   
+   
+        - if batch.actions.any?
+          %b Actions
+          %div{ :style => 'margin: 15px' }
+            %ul
+              - batch.actions.each do |action|
+                %li{ :style => 'font-size: 115%; color: green; font-weight: bold;' }= action.name
+
+                %div{ :style => 'margin: 15px' }
+                  %b Involved
+                  %div{ :style => 'margin: 15px' }
+                    %ul
+                      - action.involvements.each do |involvement|
+                        %li
+                          = "#{ link_to involvement.user.login, user_path( involvement.user ) }"
+                          - if involvement.role
+                            = " as #{ involvement.role }"
+
+                
+                %div{ :style => 'margin: 15px' }
+                  %b Timeline
+                  %div{ :style => 'margin: 15px' }
+                    %ul
+                      - action.action_entries.each do |entry|
+                        %li= "#{ entry.name } <span style='font-size: 80%'>(#{ entry.timestamp })</span>"
+      %hr
 %br
 %br
 

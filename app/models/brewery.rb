@@ -1,9 +1,10 @@
 class Brewery < ActiveRecord::Base
 
+  belongs_to :brewery_type
+
   has_many :memberships
   has_many :users, :through => :memberships, :uniq => true
-  belongs_to :brewery_type
-  has_many :brew_days
+  has_many :batches
   has_many :recipes
   has_many :beer_styles, :through => :recipes, :uniq => true
   has_one :timeline

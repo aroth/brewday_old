@@ -2,7 +2,7 @@ class BreweriesController < ApplicationController
   
   def show
     @brewery = Brewery.find( params[:id] )
-    @brew_days = @brewery.brew_days
+    @batches = @brewery.batches
     @recipes = @brewery.recipes
     @styles = @brewery.beer_styles
   end

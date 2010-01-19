@@ -9,7 +9,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100118182529) do
+ActiveRecord::Schema.define(:version => 20100119204533) do
+
+  create_table "action_entries", :force => true do |t|
+    t.integer  "action_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "timestamp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "actions", :force => true do |t|
+    t.integer  "batch_id"
+    t.string   "name"
+    t.datetime "timestamp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "batches", :force => true do |t|
+    t.integer  "brewery_id"
+    t.integer  "recipe_id"
+    t.integer  "index"
+    t.datetime "batch_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "beer_style_categories", :force => true do |t|
     t.string   "name"
@@ -32,14 +58,6 @@ ActiveRecord::Schema.define(:version => 20100118182529) do
     t.datetime "updated_at"
   end
 
-  create_table "brew_days", :force => true do |t|
-    t.integer  "brewery_id"
-    t.integer  "recipe_id"
-    t.datetime "brew_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "breweries", :force => true do |t|
     t.integer  "creator_id"
     t.integer  "brewery_type_id"
@@ -47,19 +65,6 @@ ActiveRecord::Schema.define(:version => 20100118182529) do
     t.text     "about"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "brewership_types", :force => true do |t|
-    t.string   "name",        :limit => 20
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "brewerships", :force => true do |t|
-    t.integer "user_id"
-    t.integer "brew_day_id"
-    t.integer "brewership_type_id"
   end
 
   create_table "brewery_types", :force => true do |t|
@@ -100,6 +105,13 @@ ActiveRecord::Schema.define(:version => 20100118182529) do
   add_index "images", ["imageable_type", "imageable_id"], :name => "index_images_on_imageable_type_and_imageable_id"
   add_index "images", ["user_id"], :name => "index_images_on_user_id"
 
+  create_table "involvements", :force => true do |t|
+    t.integer "action_id"
+    t.integer "user_id"
+    t.string  "role"
+    t.string  "description"
+  end
+
   create_table "membership_types", :force => true do |t|
     t.string   "name",        :limit => 20
     t.text     "description"
@@ -132,21 +144,6 @@ ActiveRecord::Schema.define(:version => 20100118182529) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
-
-  create_table "timeline_entries", :force => true do |t|
-    t.integer  "timeline_id"
-    t.string   "name"
-    t.string   "description"
-    t.datetime "entry_timestamp"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "timelines", :force => true do |t|
-    t.integer  "brew_day_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "users", :force => true do |t|
     t.datetime "created_at"
