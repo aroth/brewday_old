@@ -19,3 +19,12 @@ h1, h2, h3 {
 body {
   padding: 10px;
 }
+
+table.data_table {
+  border: 1px black solid;
+}
+
+table.data_table td {
+  border: 1px gray solid;
+  padding: 6px;
+}

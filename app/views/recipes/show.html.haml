@@ -1,0 +1,26 @@
+%h3 Recipes
+%h1= @recipe.name
+
+%br
+
+%table.data_table
+  %tr
+    %td Brewery:
+    %td= link_to( @recipe.brewery.name, brewery_path( @recipe.brewery ) )
+  %tr
+    %td Name:
+    %td= @recipe.name
+  %tr
+    %td Style:
+    %td= @recipe.beer_style.name
+  
+  %tr
+    %td Batches:
+    %td
+      %ul
+        - @recipe.batches.each do |batch|
+          %li= "Batch ##{ batch.index } on #{ batch.batch_date }"
+
+%br
+
+%h3 Description:
