@@ -1,9 +1,10 @@
 class CreateActions < ActiveRecord::Migration
   def self.up
     create_table :actions, :force => true do |t|
-      t.integer :batch_id
       t.string :name
       t.datetime :timestamp
+      t.string :actionable_type
+      t.string :actionable_id
       t.timestamps
     end
 

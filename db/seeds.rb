@@ -34,6 +34,12 @@ user_3 = User.create( :login => 'test3', :password => 'password', :password_conf
 
 brewery = Brewery.create( :name => 'Sample Brewing Co', :brewery_type => BreweryType.find_by_name('Homebrew') )
 
+e1 = Expense.new( :name => 'Equipment Purchase', :involvements => [Involvement.new( :user => user_1 ), Involvement.new( :user => user_2 )] )
+e1a = e1.expense_entries << ExpenseEntry.create( :name => 'Hurricane Burner', :description => 'Purchased from Northern Brewer', :timestamp => Time.now - 1.week, :price => Money.new(7995, "USD") )
+e1a = e1.expense_entries << ExpenseEntry.create( :name => '15 Gallon Kettle', :description => 'Purchased from Northern Brewer', :timestamp => Time.now - 1.week, :price => Money.new(32995, "USD") )
+
+brewery.expenses << e1
+
 user_1.memberships << Membership.create( :brewery => brewery, :membership_type => MembershipType.find_by_name('Brewer') )
 user_2.memberships << Membership.create( :brewery => brewery, :membership_type => MembershipType.find_by_name('Brewer') )
 

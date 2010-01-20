@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100119204533) do
+ActiveRecord::Schema.define(:version => 20100120160538) do
 
   create_table "action_entries", :force => true do |t|
     t.integer  "action_id"
@@ -21,9 +21,10 @@ ActiveRecord::Schema.define(:version => 20100119204533) do
   end
 
   create_table "actions", :force => true do |t|
-    t.integer  "batch_id"
     t.string   "name"
     t.datetime "timestamp"
+    t.string   "actionable_type"
+    t.string   "actionable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -79,6 +80,26 @@ ActiveRecord::Schema.define(:version => 20100119204533) do
     t.text     "body"
     t.string   "commentable_type", :limit => 20
     t.integer  "commentable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "expense_entries", :force => true do |t|
+    t.integer  "expense_id"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "cents"
+    t.string   "currency"
+    t.datetime "timestamp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "expenses", :force => true do |t|
+    t.string   "name"
+    t.datetime "timestamp"
+    t.string   "expensable_type"
+    t.string   "expensable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
